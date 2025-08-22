@@ -11,7 +11,7 @@ using Orders.Backend.Data;
 namespace Orders.Backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250821193551_InitialDb")]
+    [Migration("20250822003700_InitialDb")]
     partial class InitialDb
     {
         /// <inheritdoc />
@@ -24,7 +24,7 @@ namespace Orders.Backend.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Orders.Shared.Entities.Contry", b =>
+            modelBuilder.Entity("Orders.Shared.Entities.Country", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -42,7 +42,7 @@ namespace Orders.Backend.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("Contries");
+                    b.ToTable("Countries");
                 });
 #pragma warning restore 612, 618
         }

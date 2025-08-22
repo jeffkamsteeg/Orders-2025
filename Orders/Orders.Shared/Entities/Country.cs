@@ -2,7 +2,7 @@
 
 namespace Orders.Shared.Entities
 {
-    public class Contry
+    public class Country
     {
         public int Id { get; set; }
 

@@ -21,7 +21,7 @@ namespace Orders.Backend.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Orders.Shared.Entities.Contry", b =>
+            modelBuilder.Entity("Orders.Shared.Entities.Country", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -39,7 +39,7 @@ namespace Orders.Backend.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("Contries");
+                    b.ToTable("Countries");
                 });
 #pragma warning restore 612, 618
         }
