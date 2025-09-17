@@ -1,32 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Orders.Backend.Data;
+using Orders.Backend.UnitsOfWork;
 using Orders.Shared.Entities;
 
 namespace Orders.Backend.Controllers;
 
-[ApiController]
-[Route("api/[controller]")]
-public class CountriesController : ControllerBase
+[ApiController] // Indica que es un controlador de API.
+[Route("api/[controller]")] // Ruta del controlador.
+public class CountriesController : GenericController<Country> // Controlador genérico para la entidad Country.
 {
-    private readonly DataContext _context;
-
-    public CountriesController(DataContext context)
+    public CountriesController(IGenericUnitOfWork<Country> unitOfWork) : base(unitOfWork) // Constructor que recibe una unidad de trabajo genérica para Country.
     {
-        _context = context;
-    }
-
-    [HttpGet]
-    public async Task<IActionResult> GetAsync()
-    {
-        return Ok(await _context.Countries.ToListAsync());
-    }
-
-    [HttpPost]
-    public async Task<IActionResult> PostAsync(Country country)
-    {
-        _context.Countries.Add(country);
-        await _context.SaveChangesAsync();
-        return Ok(country);
     }
 }

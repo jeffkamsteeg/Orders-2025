@@ -1,20 +1,21 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Orders.Shared.Entities;
 
-namespace Orders.Backend.Data
+namespace Orders.Backend.Data;
+
+public class DataContext : DbContext // Contexto de la base de datos.
 {
-    public class DataContext : DbContext
+    public DataContext(DbContextOptions<DataContext> options) : base(options) // Constructor que recibe opciones de configuración.
     {
-        public DataContext(DbContextOptions<DataContext> options) : base(options)
-        {
-        }
+    }
 
-        public DbSet<Country> Countries { get; set; }
+    public DbSet<Category> Categories { get; set; } // DbSet para las categorías.
+    public DbSet<Country> Countries { get; set; } // DbSet para los países.
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Country>().HasIndex(x => x.Name).IsUnique();
-        }
+    protected override void OnModelCreating(ModelBuilder modelBuilder) // Configuración del modelo.
+    {
+        base.OnModelCreating(modelBuilder); // Llamada al método base para configuraciones adicionales.
+        modelBuilder.Entity<Category>().HasIndex(x => x.Name).IsUnique(); // Crear un índice único para el nombre de la categoría.
+        modelBuilder.Entity<Country>().HasIndex(x => x.Name).IsUnique(); // Crear un índice único para el nombre del país.
     }
 }
